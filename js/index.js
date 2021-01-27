@@ -25,11 +25,38 @@ class Car {
 
 let toyota = new Car(0, 0, 100, 200, carImg) 
 
+window.onkeydown = function(e) {
+  console.log(e.key)
+    switch (e.key) {    
+      case "ArrowLeft":
+        // if (toyota.x >= 0)
+        toyota.x -= 30;
+       break;
+      case "ArrowRight":
+        // if ((toyota.x < canvas.width-toyota.w))
+        toyota.x += 30;
+        break
+      case "ArrowUp":
+        toyota.y -= 30;
+       break;
+      case "ArrowDown":
+        toyota.y += 30;
+        break
+    }
+}
+
+
+
+
+
+
 function animate() {
   let gameLoop = requestAnimationFrame(animate)
   console.log("animate")
+  ctx.clearRect(0,0,canvas.width, canvas.height)
   ctx.drawImage(roadImg, road.x, road.y, road.w, road.h) 
   toyota.draw()
+  
 }
 animate()
 
