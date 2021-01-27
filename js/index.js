@@ -25,7 +25,6 @@ class Car {
 
 let toyota = new Car(0, 0, 100, 200, carImg) 
 
-
 function animate() {
   let gameLoop = requestAnimationFrame(animate)
   console.log("animate")
