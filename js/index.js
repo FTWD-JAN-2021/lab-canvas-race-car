@@ -12,6 +12,23 @@ let road = { x: 0, y: 0, w: canvas.width, h: canvas.height, img: roadImg };
 // carImg.onload = animate
 let carImg = new Image();
 carImg.src = "./images/car.png";
+let elon = new Image()
+elon.src = "https://banner2.cleanpng.com/20180522/yrt/kisspng-elon-musk-tesla-motors-investor-the-boring-company-5b03a350e8aea7.3097603915269650729531.jpg"
+
+class Bullet {
+  constructor(x, y, w, h, img) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.img = img;
+  }
+  draw() {
+    this.y--
+    ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
+  }
+
+}
 
 class Car {
   constructor(x, y, w, h, img) {
@@ -24,6 +41,7 @@ class Car {
   draw() {
     ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
   }
+
 }
 
 let toyota = new Car(
@@ -63,8 +81,12 @@ window.onkeydown = function (e) {
     case "ArrowDown":
       toyota.y += 30;
       break;
+     case " ":
+       bullets.push(new Bullet(toyota.x, toyota.y, 10, 10, elon))
   }
 };
+const bullets = []
+
 
 const startSpeed = 1;
 let speedMultiplier = 1;
@@ -112,6 +134,9 @@ function animate() {
   // box.draw()
   for (box of boxes) {
     box.draw();
+  }
+  for (bullet of bullets) {
+    bullet.draw();
   }
 }
 
