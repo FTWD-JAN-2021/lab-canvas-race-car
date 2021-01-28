@@ -34,6 +34,18 @@ let toyota = new Car(
   carImg
 );
 
+function collisionDetection (rect1, rect2) {
+  if (rect1.x < rect2.x + rect2.w &&
+    rect1.x + rect1.w > rect2.x &&
+    rect1.y < rect2.y + rect2.h &&
+    rect1.y + rect1.h > rect2.y) {
+     // collision detected!
+     //alert("Collision detected")
+     document.getElementById("gameOver").innerHTML = "GAME OVER"
+     cancelAnimationFrame(gameLoop)
+ }
+}
+
 window.onkeydown = function (e) {
   console.log(e.key);
   switch (e.key) {
@@ -80,15 +92,17 @@ class Obstacle {
     ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
 
     ctx.fillRect(this.x, this.y, this.w, this.h);
+
+    collisionDetection (this, toyota)
   }
 }
 
 // let boxObstacle = new Obstacle(50, 50, 50, 50, "red");
 
 let boxes = [];
-
+let gameLoop; 
 function animate() {
-  let gameLoop = requestAnimationFrame(animate);
+  gameLoop = requestAnimationFrame(animate);
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(roadImg, road.x, road.y, road.w, road.h);
