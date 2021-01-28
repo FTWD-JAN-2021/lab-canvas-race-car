@@ -23,7 +23,7 @@ class Car {
   }
 }
 
-let toyota = new Car(0, 0, 100, 200, carImg) 
+let toyota = new Car(canvas.width / 2 - 50 ,canvas.height-100, 50, 100, carImg) 
 
 window.onkeydown = function(e) {
   console.log(e.key)
@@ -50,13 +50,35 @@ window.onkeydown = function(e) {
 
 
 
+
+
+class Obstacle {
+  constructor (x,y,w,h, color) {
+    this.x = x
+    this.y = y
+    this.w = w
+    this.h = h
+    this.color = color 
+  }
+  draw() {
+    ctx.fillStyle = this.color
+    ctx.fillRect (this.x, this.y, this.w, this.h) 
+    
+  }
+  
+}
+
+let boxObstacle = new Obstacle(50, 50, 50, 50,"red" )
+ 
+
+
 function animate() {
   let gameLoop = requestAnimationFrame(animate)
-  console.log("animate")
+  
   ctx.clearRect(0,0,canvas.width, canvas.height)
   ctx.drawImage(roadImg, road.x, road.y, road.w, road.h) 
   toyota.draw()
+  boxObstacle.draw()
   
 }
 animate()
-
