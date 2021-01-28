@@ -70,7 +70,7 @@ class Obstacle {
 
 let boxObstacle = new Obstacle(50, 50, 50, 50,"red" )
  
-
+let boxes = []
 
 function animate() {
   let gameLoop = requestAnimationFrame(animate)
@@ -79,6 +79,20 @@ function animate() {
   ctx.drawImage(roadImg, road.x, road.y, road.w, road.h) 
   toyota.draw()
   boxObstacle.draw()
-  
+  boxObstacle2.draw()
+  // box.draw()
+  for(box of boxes) {
+    box.draw()
+  } 
 }
+
+let boxObstacle2 = new Obstacle(100, 100, 50, 50,"gold")
+setInterval(()=>{
+  console.log("lo mein")
+let box = new Obstacle(canvas.width*Math.random(), 0, 50, 50, "green")
+
+boxes.push(box)
+console.log(boxes)
+}, 1000)
+
 animate()
